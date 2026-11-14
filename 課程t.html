@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>聲波療癒心瑜伽：頌缽靜心之旅｜彰化社區大學</title>
+    <!-- 引入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入 Google Fonts: Noto Sans TC 與 Noto Serif TC 提升中文閱讀質感 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans TC"', 'sans-serif'],
+                        serif: ['"Noto Serif TC"', 'serif'],
+                    },
+                    colors: {
+                        sand: {
+                            50: '#FAF8F5',
+                            100: '#F4EFE6',
+                            200: '#E8DFD1',
+                            300: '#D5C6B0',
+                        },
+                        forest: {
+                            700: '#2D4F43',
+                            800: '#223D34',
+                            900: '#182C25',
+                        },
+                        gold: {
+                            500: '#C28E36',
+                            600: '#A67524',
+                            100: '#FBF5E8',
+                        },
+                        terracotta: {
+                            500: '#B85D43',
+                            100: '#F9EBE7',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* 自定義列印樣式與字體放大控制 */
+        html.font-large {
+            font-size: 19px;
+        }
+        @media (max-width: 640px) {
+            html.font-large {
+                font-size: 18px;
+            }
+        }
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            body {
+                background-color: #ffffff !important;
+                color: #000000 !important;
+            }
+            .shadow-sm, .shadow-md, .shadow-lg {
+                box-shadow: none !important;
+            }
+            .border-sand-200 {
+                border-color: #cccccc !important;
+            }
+            table {
+                page-break-inside: auto;
+            }
+            tr {
+                page-break-inside: avoid;
+                page-break-after: auto;
+            }
+        }
+    </style>
+</head>
+<body class="bg-sand-50 text-stone-800 font-sans antialiased selection:bg-gold-500 selection:text-white leading-relaxed">
+
+    <!-- 頂部功能導覽列 (無障礙字體調整與快速操作) -->
+    <header class="sticky top-0 z-50 bg-sand-50/95 backdrop-blur-md border-b border-sand-200 shadow-sm no-print">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
+            <!-- 品牌識別 -->
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-forest-800 text-gold-100 flex items-center justify-center shadow-inner shrink-0">
+                    <!-- 頌缽與聲波 SVG 圖示 -->
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 12c0 4.418 3.582 8 8 8s8-3.582 8-8H4z"/>
+                        <path d="M9 20h6"/>
+                        <path d="M7 8c1.5-1.5 3.5-2 5-2s3.5.5 5 2" stroke-opacity="0.7"/>
+                        <path d="M5 5c2.2-2.2 4.8-3 7-3s4.8.8 7 3" stroke-opacity="0.4"/>
+                    </svg>
+                </div>
+                <div>
+                    <span class="text-xs font-bold tracking-wider text-gold-600 block">彰化社區大學｜全齡身心靈課程</span>
+                    <span class="font-serif font-bold text-forest-900 text-base sm:text-lg">聲波療癒心瑜伽</span>
+                </div>
+            </div>
+
+            <!-- 互動控制按鈕群 -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <!-- 字體大小切換 (貼心高齡學員設計) -->
+                <div class="inline-flex rounded-xl bg-sand-200/70 p-1" role="group" aria-label="字體大小調整">
+                    <button id="btn-font-normal" onclick="setFontSize('normal')" class="px-3 py-1.5 text-sm font-medium rounded-lg bg-white text-forest-900 shadow-sm transition-all cursor-pointer">
+                        標準字體
+                    </button>
+                    <button id="btn-font-large" onclick="setFontSize('large')" class="px-3 py-1.5 text-sm font-medium rounded-lg text-stone-600 hover:text-forest-900 transition-all cursor-pointer">
+                        放大字體
+                    </button>
+                </div>
+
+                <!-- 列印/儲存 PDF 按鈕 -->
+                <button onclick="window.print()" class="inline-flex items-center gap-1.5 px-3.5 py-2 text-sm font-medium rounded-xl bg-forest-800 text-white hover:bg-forest-700 active:scale-95 transition-all shadow-sm cursor-pointer" title="列印或另存為 PDF">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/>
+                    </svg>
+                    <span class="hidden sm:inline">列印簡章</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero 主視覺區塊 -->
+    <section class="relative overflow-hidden bg-gradient-to-br from-forest-900 via-forest-800 to-stone-900 text-sand-50 py-14 sm:py-20 px-4 sm:px-6">
+        <!-- 裝飾性聲波同心圓背景 -->
+        <div class="absolute inset-0 opacity-10 pointer-events-none flex items-center justify-center">
+            <div class="w-[500px] h-[500px] rounded-full border border-gold-500 animate-pulse"></div>
+            <div class="absolute w-[750px] h-[750px] rounded-full border border-sand-100"></div>
+            <div class="absolute w-[1000px] h-[1000px] rounded-full border border-gold-500"></div>
+        </div>
+
+        <div class="relative max-w-4xl mx-auto text-center">
+            <!-- 標籤徽章 -->
+            <div class="inline-flex flex-wrap items-center justify-center gap-2 mb-6">
+                <span class="px-3.5 py-1 rounded-full text-xs sm:text-sm font-medium bg-gold-500/20 text-gold-100 border border-gold-500/40">
+                    彰化社區大學 18週精選課程
+                </span>
+                <span class="px-3.5 py-1 rounded-full text-xs sm:text-sm font-medium bg-white/10 text-sand-100 border border-white/20">
+                    適合 20～80 歲全齡共學
+                </span>
+                <span class="px-3.5 py-1 rounded-full text-xs sm:text-sm font-medium bg-terracotta-500/25 text-terracotta-100 border border-terracotta-500/40">
+                    SEL 社會情緒學習 × 資訊素養
+                </span>
+            </div>
+
+            <!-- 課程名稱 -->
+            <h1 class="font-serif text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white mb-6 leading-tight">
+                聲波療癒心瑜伽：<span class="text-gold-500 block sm:inline mt-2 sm:mt-0">頌缽靜心之旅</span>
+            </h1>
+
+            <!-- 課程理念 (Hero 焦點呈現) -->
+            <div class="max-w-3xl mx-auto bg-white/10 backdrop-blur-sm border border-white/15 rounded-2xl p-6 sm:p-8 shadow-lg">
+                <div class="text-xs uppercase tracking-widest text-gold-500 font-bold mb-2">課程理念</div>
+                <p class="text-lg sm:text-xl text-sand-50 font-normal leading-relaxed">
+                    結合溫和瑜伽與頌缽音療，融入情緒覺察與數位資訊辨識，讓各年齡層學員在繁雜世代中學會安頓身心、穩定情緒，找回內在平靜。
+                </p>
+            </div>
+
+            <!-- 快速導覽錨點 -->
+            <div class="mt-8 flex flex-wrap justify-center gap-3 no-print">
+                <a href="#course-overview" class="px-5 py-2.5 rounded-xl bg-gold-500 hover:bg-gold-600 text-white font-medium text-sm sm:text-base transition-all shadow-md">
+                    了解課程特色
+                </a>
+                <a href="#syllabus-section" class="px-5 py-2.5 rounded-xl bg-white/15 hover:bg-white/25 text-white font-medium text-sm sm:text-base border border-white/25 transition-all">
+                    瀏覽 18 週課程大綱
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主要內容區塊 -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 space-y-14">
+
+        <!-- 課程核心資訊網格 -->
+        <section id="course-overview" class="space-y-8">
+            <div class="text-center max-w-2xl mx-auto">
+                <h2 class="font-serif text-2xl sm:text-3xl font-bold text-forest-900">課程核心規劃</h2>
+                <p class="text-stone-600 mt-2">跨世代友善設計，結合聲波共振、正念伸展與現代數位生活調適</p>
+            </div>
+
+            <!-- 第一排：課程目標 & 條件限制 -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+                <!-- 課程目標 -->
+                <article class="bg-white rounded-3xl p-6 sm:p-8 border border-sand-200 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="w-11 h-11 rounded-2xl bg-forest-800/10 text-forest-800 flex items-center justify-center shrink-0">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </span>
+                            <h3 class="font-serif text-xl sm:text-2xl font-bold text-forest-900">課程目標</h3>
+                        </div>
+                        <p class="text-stone-700 leading-relaxed text-base sm:text-lg">
+                            因應現代資訊焦慮與高壓生活，本課程整合頌缽聲波學、伸展解剖與社會情緒學習（SEL）理論。學員將學會安全敲缽、基礎瑜伽呼吸法及數位訊息篩選減壓技巧。培養自我覺察與同理心，並將靜心能量帶入家庭與彰化在地社區，促進跨世代共融與身心健康。
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-sand-100 flex flex-wrap gap-2">
+                        <span class="text-xs font-medium px-2.5 py-1 rounded-lg bg-sand-100 text-forest-800">#頌缽聲波學</span>
+                        <span class="text-xs font-medium px-2.5 py-1 rounded-lg bg-sand-100 text-forest-800">#社會情緒學習SEL</span>
+                        <span class="text-xs font-medium px-2.5 py-1 rounded-lg bg-sand-100 text-forest-800">#數位減壓</span>
+                        <span class="text-xs font-medium px-2.5 py-1 rounded-lg bg-sand-100 text-forest-800">#彰化在地共融</span>
+                    </div>
+                </article>
+
+                <!-- 條件限制 (學員資格) -->
+                <article class="bg-white rounded-3xl p-6 sm:p-8 border border-sand-200 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="w-11 h-11 rounded-2xl bg-gold-500/15 text-gold-600 flex items-center justify-center shrink-0">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                </svg>
+                            </span>
+                            <h3 class="font-serif text-xl sm:text-2xl font-bold text-forest-900">條件限制與學員資格</h3>
+                        </div>
+                        <p class="text-stone-700 leading-relaxed text-base sm:text-lg">
+                            歡迎20至80歲、對身心靈放鬆有興趣之民眾參加，無須任何瑜伽或樂器基礎。本課程為零基礎入門設計，學員僅須具備基本生活自理與日常溝通能力，並能配合簡單坐姿或躺姿伸展即可；課堂將依年齡與體能提供輔具調整，讓高齡長輩與年輕族群皆能安心學習。
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-sand-100 flex flex-wrap gap-2">
+                        <span class="text-xs font-medium px-2.5 py-1 rounded-lg bg-gold-100 text-gold-600">零基礎入門</span>
+                        <span class="text-xs font-medium px-2.5 py-1 rounded-lg bg-gold-100 text-gold-600">20～80歲皆宜</span>
+                        <span class="text-xs font-medium px-2.5 py-1 rounded-lg bg-gold-100 text-gold-600">提供輔具安全調整</span>
+                    </div>
+                </article>
+            </div>
+
+            <!-- 第二排：授課方式、教學設計亮點、未來發展計畫 -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+                <!-- 授課方式 -->
+                <article class="bg-white rounded-3xl p-6 sm:p-7 border border-sand-200 shadow-sm">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="w-10 h-10 rounded-xl bg-terracotta-500/15 text-terracotta-500 flex items-center justify-center shrink-0">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                            </svg>
+                        </span>
+                        <h3 class="font-serif text-lg sm:text-xl font-bold text-forest-900">授課方式</h3>
+                    </div>
+                    <p class="text-stone-700 leading-relaxed">
+                        講師示範與實際操作、個別指導與反覆練習、團體互動及小組活動、案例討論與心得分享、影片欣賞及圖像教學、學員上台表演與展現。
+                    </p>
+                </article>
+
+                <!-- 教學設計示範 -->
+                <article class="bg-sand-100/80 rounded-3xl p-6 sm:p-7 border border-sand-300 shadow-sm">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="w-10 h-10 rounded-xl bg-forest-800 text-gold-100 flex items-center justify-center shrink-0">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </span>
+                        <h3 class="font-serif text-lg sm:text-xl font-bold text-forest-900">教學設計示例</h3>
+                    </div>
+                    <p class="text-stone-800 leading-relaxed">
+                        第6週「情緒氣象台與缽音對話」：暖身伸展（20分）→透過數位情緒圖卡覺察壓力來源（20分）→分組練習以高低頻頌缽聲波安撫焦慮情緒（40分）→靜心大休息與分享（20分）。
+                    </p>
+                </article>
+
+                <!-- 發展計畫 -->
+                <article class="bg-white rounded-3xl p-6 sm:p-7 border border-sand-200 shadow-sm">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="w-10 h-10 rounded-xl bg-forest-800/10 text-forest-800 flex items-center justify-center shrink-0">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                            </svg>
+                        </span>
+                        <h3 class="font-serif text-lg sm:text-xl font-bold text-forest-900">未來發展計畫</h3>
+                    </div>
+                    <p class="text-stone-700 leading-relaxed">
+                        未來將開設進階雙缽音療與高齡銀髮專班，並結合彰化社區大學公益服務隊，走入在地長照據點與社區關懷站進行音療義演。
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <!-- 18週課程大綱區塊 -->
+        <section id="syllabus-section" class="bg-white rounded-3xl p-5 sm:p-8 md:p-10 border border-sand-200 shadow-sm">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6 pb-6 border-b border-sand-200">
+                <div>
+                    <span class="text-xs font-bold tracking-wider text-gold-600 uppercase">18-Week Curriculum</span>
+                    <h2 class="font-serif text-2xl sm:text-3xl font-bold text-forest-900 mt-1">18週完整課程大綱</h2>
+                    <p class="text-stone-600 text-sm sm:text-base mt-1">循序漸進結合身體伸展、頌缽音療、情緒覺察與數位資訊識讀</p>
+                </div>
+
+                <!-- 互動篩選與搜尋工具列 -->
+                <div class="flex flex-col sm:flex-row gap-3 no-print">
+                    <!-- 主題分類快速篩選 -->
+                    <select id="filter-category" onchange="filterSyllabus()" class="px-3.5 py-2.5 rounded-xl border border-sand-300 bg-sand-50 text-stone-800 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-forest-700 cursor-pointer">
+                        <option value="all">顯示全部 18 週</option>
+                        <option value="sel">社會情緒學習 (SEL)</option>
+                        <option value="info">資訊素養與數位減壓</option>
+                        <option value="yoga">頌缽音療與身心伸展</option>
+                        <option value="special">社大公民週與成果展</option>
+                    </select>
+
+                    <!-- 關鍵字搜尋 -->
+                    <div class="relative">
+                        <input type="text" id="search-input" oninput="filterSyllabus()" placeholder="搜尋週次或關鍵字..." class="w-full sm:w-56 pl-9 pr-3.5 py-2.5 rounded-xl border border-sand-300 bg-sand-50 text-stone-800 text-sm focus:outline-none focus:ring-2 focus:ring-forest-700">
+                        <svg class="w-4 h-4 text-stone-400 absolute left-3 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 搜尋無結果提示 -->
+            <div id="empty-state" class="hidden text-center py-12">
+                <p class="text-stone-500 text-lg">找不到符合條件的週次課程，請嘗試其他關鍵字。</p>
+                <button onclick="resetFilter()" class="mt-3 px-4 py-2 rounded-xl bg-sand-200 text-forest-900 text-sm font-medium hover:bg-sand-300 transition-colors cursor-pointer">
+                    顯示全部課程
+                </button>
+            </div>
+
+            <!-- 響應式課綱表格 -->
+            <div class="overflow-x-auto rounded-2xl border border-sand-200">
+                <table class="w-full text-left border-collapse" id="syllabus-table">
+                    <thead>
+                        <tr class="bg-forest-800 text-sand-50 text-sm sm:text-base">
+                            <th class="py-4 px-4 sm:px-6 font-bold w-20 sm:w-24 text-center whitespace-nowrap">週</th>
+                            <th class="py-4 px-4 sm:px-6 font-bold w-1/3 min-w-[200px]">主題</th>
+                            <th class="py-4 px-4 sm:px-6 font-bold min-w-[280px]">內容</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-sand-200 text-stone-700 text-sm sm:text-base" id="syllabus-body">
+                        <tr data-tags="yoga" class="hover:bg-sand-50/90 transition-colors">
+                            <td class="py-4 px-4 sm:px-6 text-center font-bold text-forest-800">1</td>
+                            <td class="py-4 px-4 sm:px-6 font-bold text-forest-900">初遇聲波：頌缽與瑜伽的身心對話</td>
+                            <td class="py-4 px-4 sm:px-6 leading-relaxed">認識頌缽材質與發聲原理，體驗基礎腹式呼吸與頌缽共振，打破年齡與筋骨僵硬迷思，建立安全友善的跨世代學習社群。</td>
+                        </tr>
+                        <tr data-tags="sel yoga" class="hover:bg-sand-50/90 transition-colors">
+                            <td class="py-4 px-4 sm:px-6 text-center font-bold text-forest-800">2</td>
+                            <td class="py-4 px-4 sm:px-6 font-bold text-forest-900">傾聽身體的聲音：正念伸展與自我覺察</td>
+                            <td class="py-4 px-4 sm:px-6 leading-relaxed">結合社會情緒學習（SEL）自我覺察概念，透過溫和肩頸背伸展，學習辨識身體緊繃訊號，並用單缽音頻釋放日常疲勞。</td>
+                        </tr>
+                        <tr data-tags="info yoga" class="hover:bg-sand-50/90 transition-colors">
+                            <td class="py-4 px-4 sm:px-6 text-center font-bold text-forest-800">3</td>
+                            <td class="py-4 px-4 sm:px-6 font-bold text-forest-900">資訊排毒第一課：從滑手機到靜心呼吸</td>
+                            <td class="py-4 px-4 sm:px-6 leading-relaxed">探討資訊過載帶來的焦慮感，練習數位斷捨離呼吸法，搭配柔和貓牛式伸展與低頻頌缽震動，讓過度運轉的大腦徹底關機。</td>
+                        </tr>
+                        <tr data-tags="yoga" class="hover:bg-sand-50/90 transition-colors">
+                            <td class="py-4 px-4 sm:px-6 text-center font-bold text-forest-800">4</td>
+                            <td class="py-4 px-4 sm:px-6 font-bold text-forest-900">穩固根基：下肢肌力與大地能量</td>
+                            <td class="py-4 px-4 sm:px-6 leading-relaxed">針對20至80歲設計安全站姿與坐姿下肢訓練，增強平衡感預防跌倒，並學習手持頌缽為雙腿進行深層聲波按摩。</td>
+                        </tr>
+                        <tr data-tags="info yoga" class="hover:bg-sand-50/90 transition-colors">
+                            <td class="py-4 px-4 sm:px-6 text-center font-bold text-forest-800">5</td>
+                            <td class="py-4 px-4 sm:px-6 font-bold text-forest-900">識讀健康訊息：破除養生迷思與正念飲食</td>
+                            <td class="py-4 px-4 sm:px-6 leading-relaxed">培養資訊素養，教導學員辨別網路真假養生與保健資訊；結合溫和扭轉瑜伽促進腸胃蠕動，搭配清脆缽音練習正念品水。</td>
+                        </tr>
+                        <tr data-tags="sel yoga" class="bg-gold-100/40 hover:bg-gold-100/70 transition-colors">
+                            <td class="py-4 px-4 sm:px-6 text-center font-bold text-gold-600">6</td>
+                            <td class="py-4 px-4 sm:px-6 font-bold text-forest-900">
+                                情緒氣象台：用缽音安撫焦慮與壓力
+                                <span class="ml-1.5 inline-block text-xs font-medium px-2 py-0.5 rounded bg-gold-500/20 text-gold-600 align-middle">教學示例週</span>
+                            </td>
+                            <td class="py-4 px-4 sm:px-6 leading-relaxed">運用情緒覺察練習標記內在壓力，學習不同敲擊力道與磨缽技巧，創造穩定和諧的聲波頻率，作為隨身情緒急救工具。</td>
+                        </tr>
+                        <tr data-tags="sel yoga" class="hover:bg-sand-50/90 transition-colors">
+                            <td class="py-4 px-4 sm:px-6 text-center font-bold text-forest-800">7</td>
+                            <td class="py-4 px-4 sm:px-6 font-bold text-forest-900">打開心扉：胸椎伸展與自我接納</td>
+                            <td class="py-4 px-4 sm:px-6 leading-relaxed">透過開胸與溫和後彎體式改善駝背圓肩，結合自我慈悲引導語，在溫暖的頌缽餘韻中練習接納不完美的自己。</td>
+                        </tr>
+                        <tr data-tags="sel yoga" class="hover:bg-sand-50/90 transition-colors">
+                            <td class="py-4 px-4 sm:px-6 text-center font-bold text-forest-800">8</td>
+                            <td class="py-4 px-4 sm:px-6 font-bold text-forest-900">跨世代共鳴：雙人瑜伽與傾聽練習</td>
+                            <td class="py-4 px-4 sm:px-6 leading-relaxed">運用社交覺察與同理心技巧，進行安全有趣的雙人互助伸展，並為夥伴敲響祝福缽音，體驗人際間純粹的支持與信任。</td>
+                        </tr>
+                        <tr data-tags="special" class="bg-sand-100/90">
+                            <td class="py-4 px-4 sm:px-6 text-center font-bold text-stone-600">9</td>
+                            <td class="py-4 px-4 sm:px-6 font-bold text-stone-700">公民素養週</td>
+                            <td class="py-4 px-4 sm:px-6 text-stone-600">由彰化社區大學安排</td>
+                        </tr>
+                        <tr data-tags="info sel yoga" class="hover:bg-sand-50/90 transition-colors">
+                            <td class="py-4 px-4 sm:px-6 text-center font-bold text-forest-800">10</td>
+                            <td class="py-4 px-4 sm:px-6 font-bold text-forest-900">數位媒體與情緒界線：不再被演算法綁架</td>
+                            <td class="py-4 px-4 sm:px-6 leading-relaxed">解析社群媒體如何牽動喜怒哀樂，建立健康的資訊使用習慣；透過陰瑜伽深度開髖體式，釋放深層情緒壓力。</td>
+                        </tr>
+                        <tr data-tags="yoga" class="hover:bg-sand-50/90 transition-colors">
+                            <td class="py-4 px-4 sm:px-6 text-center font-bold text-forest-800">11</td>
+                            <td class="py-4 px-4 sm:px-6 font-bold text-forest-900">睡前儀式感：改善失眠的修復瑜伽</td>
+                            <td class="py-4 px-4 sm:px-6 leading-relaxed">學習睡前十分鐘床上修復體式，搭配高頻淨化與低頻安神頌缽組合，調節自律神經，提升各年齡層的深層睡眠品質。</td>
+                        </tr>
+                        <tr data-tags="info yoga" class="hover:bg-sand-50/90 transition-colors">
+                            <td class="py-4 px-4 sm:px-6 text-center font-bold text-forest-800">12</td>
+                            <td class="py-4 px-4 sm:px-6 font-bold text-forest-900">尋找真實的平靜：AI時代的身心安頓</td>
+                            <td class="py-4 px-4 sm:px-6 leading-relaxed">認識當代AI與數位科技趨勢，學習善用數位工具輔助生活而不迷失；透過平衡體式訓練專注力，在變動中站穩腳步。</td>
+                        </tr>
+                        <tr data-tags="yoga" class="hover:bg-sand-50/90 transition-colors">
+                            <td class="py-4 px-4 sm:px-6 text-center font-bold text-forest-800">13</td>
+                            <td class="py-4 px-4 sm:px-6 font-bold text-forest-900">流動的優雅：拜日式溫和版與呼吸韻律</td>
+                            <td class="py-4 px-4 sm:px-6 leading-relaxed">將經典拜日式拆解為適合全齡的椅子與墊上版本，配合規律的敲缽節奏，感受呼吸、動作與聲音合一的流暢美感。</td>
+                        </tr>
+                        <tr data-tags="yoga" class="hover:bg-sand-50/90 transition-colors">
+                            <td class="py-4 px-4 sm:px-6 text-center font-bold text-forest-800">14</td>
+                            <td class="py-4 px-4 sm:px-6 font-bold text-forest-900">聲音的魔法：七脈輪基礎與全身聲波浴</td>
+                            <td class="py-4 px-4 sm:px-6 leading-relaxed">認識人體能量中心概念，學員輪流躺下體驗環繞式頌缽聲波浴，感受聲波穿透肌肉與筋膜的深度療癒力。</td>
+                        </tr>
+                        <tr data-tags="sel yoga" class="hover:bg-sand-50/90 transition-colors">
+                            <td class="py-4 px-4 sm:px-6 text-center font-bold text-forest-800">15</td>
+                            <td class="py-4 px-4 sm:px-6 font-bold text-forest-900">衝突轉化與溝通：非暴力溝通與靜心</td>
+                            <td class="py-4 px-4 sm:px-6 leading-relaxed">結合人際關係技巧，練習在情緒波動時先暫停呼吸；透過核心穩定訓練強化內在力量，學會溫和而堅定地表達需求。</td>
+                        </tr>
+                        <tr data-tags="yoga" class="hover:bg-sand-50/90 transition-colors">
+                            <td class="py-4 px-4 sm:px-6 text-center font-bold text-forest-800">16</td>
+                            <td class="py-4 px-4 sm:px-6 font-bold text-forest-900">把療癒帶回家：居家迷你音療空間設計</td>
+                            <td class="py-4 px-4 sm:px-6 leading-relaxed">學習如何運用家中現有物品打造靜心角落，複習個人專屬的15分鐘居家頌缽瑜伽菜單，將課堂所學融入日常生活。</td>
+                        </tr>
+                        <tr data-tags="sel yoga" class="hover:bg-sand-50/90 transition-colors">
+                            <td class="py-4 px-4 sm:px-6 text-center font-bold text-forest-800">17</td>
+                            <td class="py-4 px-4 sm:px-6 font-bold text-forest-900">凝聚與共創：成果展演彩排與心靈回顧</td>
+                            <td class="py-4 px-4 sm:px-6 leading-relaxed">回顧16週的身心轉變，分組編排結合溫和瑜伽流動與頌缽合奏的小型展演，互相給予正向回饋，凝聚團隊向心力。</td>
+                        </tr>
+                        <tr data-tags="special" class="bg-terracotta-100/60 hover:bg-terracotta-100 transition-colors">
+                            <td class="py-4 px-4 sm:px-6 text-center font-bold text-terracotta-500">18</td>
+                            <td class="py-4 px-4 sm:px-6 font-bold text-forest-900">
+                                聲波綻放：跨世代頌缽瑜伽身心療癒成果展
+                                <span class="ml-1.5 inline-block text-xs font-medium px-2 py-0.5 rounded bg-terracotta-500/15 text-terracotta-500 align-middle">期末成果展</span>
+                            </td>
+                            <td class="py-4 px-4 sm:px-6 leading-relaxed">學員自信展現所學，帶來融合瑜伽體式與頌缽合奏的沉浸式演出，並邀請親友與社區民眾共同體驗聲波靜心，分享學習感動。</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 頁尾 -->
+    <footer class="bg-forest-900 text-sand-200 py-10 px-4 sm:px-6 border-t border-forest-800">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <div>
+                <p class="font-serif text-lg font-bold text-white">聲波療癒心瑜伽：頌缽靜心之旅</p>
+                <p class="text-sm text-sand-300 mt-1">彰化社區大學｜18週跨世代身心療癒課程規劃</p>
+            </div>
+            <div class="flex items-center gap-3 no-print">
+                <button onclick="copyCourseSummary()" id="btn-copy" class="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-sm font-medium transition-colors cursor-pointer">
+                    複製課程簡介文字
+                </button>
+                <a href="#" class="px-4 py-2 rounded-xl bg-gold-500 hover:bg-gold-600 text-white text-sm font-medium transition-colors">
+                    回到頂部 ↑
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 互動腳本 -->
+    <script>
+        // 字體大小切換功能 (支援 20~80 歲不同視力需求)
+        function setFontSize(size) {
+            const htmlEl = document.documentElement;
+            const btnNormal = document.getElementById('btn-font-normal');
+            const btnLarge = document.getElementById('btn-font-large');
+
+            if (size === 'large') {
+                htmlEl.classList.add('font-large');
+                btnLarge.classList.add('bg-white', 'text-forest-900', 'shadow-sm');
+                btnLarge.classList.remove('text-stone-600');
+                btnNormal.classList.remove('bg-white', 'text-forest-900', 'shadow-sm');
+                btnNormal.classList.add('text-stone-600');
+            } else {
+                htmlEl.classList.remove('font-large');
+                btnNormal.classList.add('bg-white', 'text-forest-900', 'shadow-sm');
+                btnNormal.classList.remove('text-stone-600');
+                btnLarge.classList.remove('bg-white', 'text-forest-900', 'shadow-sm');
+                btnLarge.classList.add('text-stone-600');
+            }
+        }
+
+        // 課綱搜尋與分類篩選功能
+        function filterSyllabus() {
+            const keyword = document.getElementById('search-input').value.trim().toLowerCase();
+            const category = document.getElementById('filter-category').value;
+            const rows = document.querySelectorAll('#syllabus-body tr');
+            const emptyState = document.getElementById('empty-state');
+            const tableContainer = document.querySelector('#syllabus-table').parentElement;
+            let visibleCount = 0;
+
+            rows.forEach(row => {
+                const text = row.innerText.toLowerCase();
+                const tags = row.getAttribute('data-tags') || '';
+                const matchesKeyword = keyword === '' || text.includes(keyword);
+                const matchesCategory = category === 'all' || tags.includes(category);
+
+                if (matchesKeyword && matchesCategory) {
+                    row.style.display = '';
+                    visibleCount++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+
+            if (visibleCount === 0) {
+                emptyState.classList.remove('hidden');
+                tableContainer.classList.add('hidden');
+            } else {
+                emptyState.classList.add('hidden');
+                tableContainer.classList.remove('hidden');
+            }
+        }
+
+        // 重設篩選條件
+        function resetFilter() {
+            document.getElementById('search-input').value = '';
+            document.getElementById('filter-category').value = 'all';
+            filterSyllabus();
+        }
+
+        // 一鍵複製課程招生簡介 (相容 iframe 環境)
+        function copyCourseSummary() {
+            const summaryText = `【彰化社區大學課程推薦】聲波療癒心瑜伽：頌缽靜心之旅
+● 適合對象：歡迎20至80歲、對身心靈放鬆有興趣之民眾參加，無須任何瑜伽或樂器基礎。
+● 課程理念：結合溫和瑜伽與頌缽音療，融入情緒覺察與數位資訊辨識，讓各年齡層學員在繁雜世代中學會安頓身心、穩定情緒，找回內在平靜。
+● 課程目標：因應現代資訊焦慮與高壓生活，本課程整合頌缽聲波學、伸展解剖與社會情緒學習（SEL）理論。學員將學會安全敲缽、基礎瑜伽呼吸法及數位訊息篩選減壓技巧。培養自我覺察與同理心，並將靜心能量帶入家庭與彰化在地社區，促進跨世代共融與身心健康。`;
+
+            const tempTextarea = document.createElement('textarea');
+            tempTextarea.value = summaryText;
+            document.body.appendChild(tempTextarea);
+            tempTextarea.select();
+            try {
+                document.execCommand('copy');
+                const btn = document.getElementById('btn-copy');
+                const originalText = btn.innerText;
+                btn.innerText = '已複製簡介！';
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                }, 2000);
+            } catch (err) {
+                console.error('複製失敗', err);
+            }
+            document.body.removeChild(tempTextarea);
+        }
+    </script>
+</body>
+</html>
